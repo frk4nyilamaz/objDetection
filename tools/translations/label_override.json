@@ -1,0 +1,436 @@
+{
+  "person": {
+    "source": "person",
+    "translations": {
+      "en": "person",
+      "tr": "insan"
+    }
+  },
+  "cell phone": {
+    "source": "cell phone",
+    "translations": {
+      "en": "cell phone",
+      "tr": "cep telefonu"
+    }
+  },
+  "tv": {
+    "source": "tv",
+    "translations": {
+      "en": "tv",
+      "tr": "televizyon"
+    }
+  },
+  "laptop": {
+    "source": "laptop",
+    "translations": {
+      "en": "laptop",
+      "tr": "dizüstü bilgisayar"
+    }
+  },
+  "clock": {
+    "source": "clock",
+    "translations": {
+      "en": "clock",
+      "tr": "saat"
+    }
+  },
+  "chair": {
+    "source": "chair",
+    "translations": {
+      "en": "chair",
+      "tr": "sandalye"
+    }
+  },
+  "cup": {
+    "source": "cup",
+    "translations": {
+      "en": "cup",
+      "tr": "bardak"
+    }
+  },
+  "remote": {
+    "source": "remote",
+    "translations": {
+      "en": "remote",
+      "tr": "uzaktan kumanda"
+    }
+  },
+  "toothbrush": {
+    "source": "toothbrush",
+    "translations": {
+      "en": "toothbrush",
+      "tr": "diş fırçası"
+    }
+  },
+  "banana": {
+    "source": "banana",
+    "translations": {
+      "en": "banana",
+      "tr": "muz"
+    }
+  },
+  "wine glass": {
+    "source": "wine glass",
+    "translations": {
+      "en": "wine glass",
+      "tr": "şarap kadehi"
+    }
+  },
+  "sports ball": {
+    "source": "sports ball",
+    "translations": {
+      "en": "sports ball",
+      "tr": "spor topu"
+    }
+  },
+  "dining table": {
+    "source": "dining table",
+    "translations": {
+      "en": "dining table",
+      "tr": "yemek masası"
+    }
+  },
+  "bowl": {
+    "source": "bowl",
+    "translations": {
+      "en": "bowl",
+      "tr": "kase"
+    }
+  },
+  "train": {
+    "source": "train",
+    "translations": {
+      "en": "train",
+      "tr": "tren"
+    }
+  },
+  "bed": {
+    "source": "bed",
+    "translations": {
+      "en": "bed",
+      "tr": "yatak"
+    }
+  },
+  "microwave": {
+    "source": "microwave",
+    "translations": {
+      "en": "microwave",
+      "tr": "mikrodalga"
+    }
+  },
+  "refrigerator": {
+    "source": "refrigerator",
+    "translations": {
+      "en": "refrigerator",
+      "tr": "buzdolabı"
+    }
+  },
+  "toilet": {
+    "source": "toilet",
+    "translations": {
+      "en": "toilet",
+      "tr": "tuvalet"
+    }
+  },
+  "book": {
+    "source": "book",
+    "translations": {
+      "en": "book",
+      "tr": "kitap"
+    }
+  },
+  "cat": {
+    "source": "cat",
+    "translations": {
+      "en": "cat",
+      "tr": "kedi"
+    }
+  },
+  "umbrella": {
+    "source": "umbrella",
+    "translations": {
+      "en": "umbrella",
+      "tr": "şemsiye"
+    }
+  },
+  "baseball bat": {
+    "source": "baseball bat",
+    "translations": {
+      "en": "baseball bat",
+      "tr": "beyzbol sopası"
+    }
+  },
+  "tie": {
+    "source": "tie",
+    "translations": {
+      "en": "tie",
+      "tr": "kravat"
+    }
+  },
+  "oven": {
+    "source": "oven",
+    "translations": {
+      "en": "oven",
+      "tr": "fırın"
+    }
+  },
+  "handbag": {
+    "source": "handbag",
+    "translations": {
+      "en": "handbag",
+      "tr": "el çantası"
+    }
+  },
+  "bus": {
+    "source": "bus",
+    "translations": {
+      "en": "bus",
+      "tr": "otobüs"
+    }
+  },
+  "airplane": {
+    "source": "airplane",
+    "translations": {
+      "en": "airplane",
+      "tr": "uçak"
+    }
+  },
+  "couch": {
+    "source": "couch",
+    "translations": {
+      "en": "couch",
+      "tr": "kanepe"
+    }
+  },
+  "potted plant": {
+    "source": "potted plant",
+    "translations": {
+      "en": "potted plant",
+      "tr": "saksı bitkisi"
+    }
+  },
+  "suitcase": {
+    "source": "suitcase",
+    "translations": {
+      "en": "suitcase",
+      "tr": "bavul"
+    }
+  },
+  "bird": {
+    "source": "bird",
+    "translations": {
+      "en": "bird",
+      "tr": "kuş"
+    }
+  },
+  "car": {
+    "source": "car",
+    "translations": {
+      "en": "car",
+      "tr": "araba"
+    }
+  },
+  "apple": {
+    "source": "apple",
+    "translations": {
+      "en": "apple",
+      "tr": "elma"
+    }
+  },
+  "kite": {
+    "source": "kite",
+    "translations": {
+      "en": "kite",
+      "tr": "uçurtma"
+    }
+  },
+  "sink": {
+    "source": "sink",
+    "translations": {
+      "en": "sink",
+      "tr": "lavabo"
+    }
+  },
+  "dog": {
+    "source": "dog",
+    "translations": {
+      "en": "dog",
+      "tr": "köpek"
+    }
+  },
+  "teddy bear": {
+    "source": "teddy bear",
+    "translations": {
+      "en": "teddy bear",
+      "tr": "oyuncak ayı"
+    }
+  },
+  "horse": {
+    "source": "horse",
+    "translations": {
+      "en": "horse",
+      "tr": "at"
+    }
+  },
+  "vase": {
+    "source": "vase",
+    "translations": {
+      "en": "vase",
+      "tr": "vazo"
+    }
+  },
+  "truck": {
+    "source": "truck",
+    "translations": {
+      "en": "truck",
+      "tr": "kamyon"
+    }
+  },
+  "knife": {
+    "source": "knife",
+    "translations": {
+      "en": "knife",
+      "tr": "bıçak"
+    }
+  },
+  "cow": {
+    "source": "cow",
+    "translations": {
+      "en": "cow",
+      "tr": "inek"
+    }
+  },
+  "surfboard": {
+    "source": "surfboard",
+    "translations": {
+      "en": "surfboard",
+      "tr": "sörf tahtası"
+    }
+  },
+  "bench": {
+    "source": "bench",
+    "translations": {
+      "en": "bench",
+      "tr": "bank"
+    }
+  },
+  "pizza": {
+    "source": "pizza",
+    "translations": {
+      "en": "pizza",
+      "tr": "pizza"
+    }
+  },
+  "frisbee": {
+    "source": "frisbee",
+    "translations": {
+      "en": "frisbee",
+      "tr": "frizbi"
+    }
+  },
+  "donut": {
+    "source": "donut",
+    "translations": {
+      "en": "donut",
+      "tr": "donut"
+    }
+  },
+  "tennis racket": {
+    "source": "tennis racket",
+    "translations": {
+      "en": "tennis racket",
+      "tr": "tenis raketi"
+    }
+  },
+  "skateboard": {
+    "source": "skateboard",
+    "translations": {
+      "en": "skateboard",
+      "tr": "kaykay"
+    }
+  },
+  "traffic light": {
+    "source": "traffic light",
+    "translations": {
+      "en": "traffic light",
+      "tr": "trafik ışığı"
+    }
+  },
+  "bicycle": {
+    "source": "bicycle",
+    "translations": {
+      "en": "bicycle",
+      "tr": "bisiklet"
+    }
+  },
+  "scissors": {
+    "source": "scissors",
+    "translations": {
+      "en": "scissors",
+      "tr": "makas"
+    }
+  },
+  "skis": {
+    "source": "skis",
+    "translations": {
+      "en": "skis",
+      "tr": "kayak"
+    }
+  },
+  "boat": {
+    "source": "boat",
+    "translations": {
+      "en": "boat",
+      "tr": "tekne"
+    }
+  },
+  "sandwich": {
+    "source": "sandwich",
+    "translations": {
+      "en": "sandwich",
+      "tr": "sandviç"
+    }
+  },
+  "baseball glove": {
+    "source": "baseball glove",
+    "translations": {
+      "en": "baseball glove",
+      "tr": "beyzbol eldiveni"
+    }
+  },
+  "motorcycle": {
+    "source": "motorcycle",
+    "translations": {
+      "en": "motorcycle",
+      "tr": "motosiklet"
+    }
+  },
+  "parking meter": {
+    "source": "parking meter",
+    "translations": {
+      "en": "parking meter",
+      "tr": "parkmetre"
+    }
+  },
+  "backpack": {
+    "source": "backpack",
+    "translations": {
+      "en": "backpack",
+      "tr": "sırt çantası"
+    }
+  },
+  "sheep": {
+    "source": "sheep",
+    "translations": {
+      "en": "sheep",
+      "tr": "koyun"
+    }
+  },
+  "fork": {
+    "source": "fork",
+    "translations": {
+      "en": "fork",
+      "tr": "çatal"
+    }
+  }
+}

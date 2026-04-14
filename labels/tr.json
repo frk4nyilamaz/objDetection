@@ -1,0 +1,419 @@
+{
+  "translations": {
+    "1": {
+      "id": 1,
+      "label": "person",
+      "translation": "insan",
+      "status": "ready"
+    },
+    "2": {
+      "id": 2,
+      "label": "cell phone",
+      "translation": "cep telefonu",
+      "status": "ready"
+    },
+    "3": {
+      "id": 3,
+      "label": "tv",
+      "translation": "televizyon",
+      "status": "ready"
+    },
+    "4": {
+      "id": 4,
+      "label": "laptop",
+      "translation": "dizüstü bilgisayar",
+      "status": "ready"
+    },
+    "5": {
+      "id": 5,
+      "label": "clock",
+      "translation": "saat",
+      "status": "ready"
+    },
+    "6": {
+      "id": 6,
+      "label": "chair",
+      "translation": "sandalye",
+      "status": "ready"
+    },
+    "7": {
+      "id": 7,
+      "label": "cup",
+      "translation": "bardak",
+      "status": "ready"
+    },
+    "8": {
+      "id": 8,
+      "label": "remote",
+      "translation": "uzaktan kumanda",
+      "status": "ready"
+    },
+    "9": {
+      "id": 9,
+      "label": "toothbrush",
+      "translation": "diş fırçası",
+      "status": "ready"
+    },
+    "10": {
+      "id": 10,
+      "label": "banana",
+      "translation": "muz",
+      "status": "ready"
+    },
+    "11": {
+      "id": 11,
+      "label": "wine glass",
+      "translation": "şarap kadehi",
+      "status": "ready"
+    },
+    "12": {
+      "id": 12,
+      "label": "sports ball",
+      "translation": "spor topu",
+      "status": "ready"
+    },
+    "13": {
+      "id": 13,
+      "label": "dining table",
+      "translation": "yemek masası",
+      "status": "ready"
+    },
+    "14": {
+      "id": 14,
+      "label": "bowl",
+      "translation": "kase",
+      "status": "ready"
+    },
+    "15": {
+      "id": 15,
+      "label": "train",
+      "translation": "tren",
+      "status": "ready"
+    },
+    "16": {
+      "id": 16,
+      "label": "bed",
+      "translation": "yatak",
+      "status": "ready"
+    },
+    "17": {
+      "id": 17,
+      "label": "microwave",
+      "translation": "mikrodalga",
+      "status": "ready"
+    },
+    "18": {
+      "id": 18,
+      "label": "refrigerator",
+      "translation": "buzdolabı",
+      "status": "ready"
+    },
+    "19": {
+      "id": 19,
+      "label": "toilet",
+      "translation": "tuvalet",
+      "status": "ready"
+    },
+    "20": {
+      "id": 20,
+      "label": "book",
+      "translation": "kitap",
+      "status": "ready"
+    },
+    "21": {
+      "id": 21,
+      "label": "cat",
+      "translation": "kedi",
+      "status": "ready"
+    },
+    "22": {
+      "id": 22,
+      "label": "umbrella",
+      "translation": "şemsiye",
+      "status": "ready"
+    },
+    "23": {
+      "id": 23,
+      "label": "baseball bat",
+      "translation": "beyzbol sopası",
+      "status": "ready"
+    },
+    "24": {
+      "id": 24,
+      "label": "tie",
+      "translation": "kravat",
+      "status": "ready"
+    },
+    "25": {
+      "id": 25,
+      "label": "oven",
+      "translation": "fırın",
+      "status": "ready"
+    },
+    "26": {
+      "id": 26,
+      "label": "handbag",
+      "translation": "el çantası",
+      "status": "ready"
+    },
+    "27": {
+      "id": 27,
+      "label": "bus",
+      "translation": "otobüs",
+      "status": "ready"
+    },
+    "28": {
+      "id": 28,
+      "label": "airplane",
+      "translation": "uçak",
+      "status": "ready"
+    },
+    "29": {
+      "id": 29,
+      "label": "couch",
+      "translation": "kanepe",
+      "status": "ready"
+    },
+    "30": {
+      "id": 30,
+      "label": "potted plant",
+      "translation": "saksı bitkisi",
+      "status": "ready"
+    },
+    "31": {
+      "id": 31,
+      "label": "suitcase",
+      "translation": "bavul",
+      "status": "ready"
+    },
+    "32": {
+      "id": 32,
+      "label": "bird",
+      "translation": "kuş",
+      "status": "ready"
+    },
+    "33": {
+      "id": 33,
+      "label": "car",
+      "translation": "araba",
+      "status": "ready"
+    },
+    "34": {
+      "id": 34,
+      "label": "apple",
+      "translation": "elma",
+      "status": "ready"
+    },
+    "35": {
+      "id": 35,
+      "label": "kite",
+      "translation": "uçurtma",
+      "status": "ready"
+    },
+    "36": {
+      "id": 36,
+      "label": "sink",
+      "translation": "lavabo",
+      "status": "ready"
+    },
+    "37": {
+      "id": 37,
+      "label": "dog",
+      "translation": "köpek",
+      "status": "ready"
+    },
+    "38": {
+      "id": 38,
+      "label": "teddy bear",
+      "translation": "oyuncak ayı",
+      "status": "ready"
+    },
+    "39": {
+      "id": 39,
+      "label": "horse",
+      "translation": "at",
+      "status": "ready"
+    },
+    "40": {
+      "id": 40,
+      "label": "vase",
+      "translation": "vazo",
+      "status": "ready"
+    },
+    "41": {
+      "id": 41,
+      "label": "truck",
+      "translation": "kamyon",
+      "status": "ready"
+    },
+    "42": {
+      "id": 42,
+      "label": "knife",
+      "translation": "bıçak",
+      "status": "ready"
+    },
+    "43": {
+      "id": 43,
+      "label": "cow",
+      "translation": "inek",
+      "status": "ready"
+    },
+    "44": {
+      "id": 44,
+      "label": "surfboard",
+      "translation": "sörf tahtası",
+      "status": "ready"
+    },
+    "45": {
+      "id": 45,
+      "label": "bench",
+      "translation": "bank",
+      "status": "ready"
+    },
+    "46": {
+      "id": 46,
+      "label": "pizza",
+      "translation": "pizza",
+      "status": "ready"
+    },
+    "47": {
+      "id": 47,
+      "label": "frisbee",
+      "translation": "frizbi",
+      "status": "ready"
+    },
+    "48": {
+      "id": 48,
+      "label": "donut",
+      "translation": "donut",
+      "status": "ready"
+    },
+    "49": {
+      "id": 49,
+      "label": "tennis racket",
+      "translation": "tenis raketi",
+      "status": "ready"
+    },
+    "50": {
+      "id": 50,
+      "label": "skateboard",
+      "translation": "kaykay",
+      "status": "ready"
+    },
+    "51": {
+      "id": 51,
+      "label": "traffic light",
+      "translation": "trafik ışığı",
+      "status": "ready"
+    },
+    "52": {
+      "id": 52,
+      "label": "bicycle",
+      "translation": "bisiklet",
+      "status": "ready"
+    },
+    "53": {
+      "id": 53,
+      "label": "scissors",
+      "translation": "makas",
+      "status": "ready"
+    },
+    "54": {
+      "id": 54,
+      "label": "skis",
+      "translation": "kayak",
+      "status": "ready"
+    },
+    "55": {
+      "id": 55,
+      "label": "boat",
+      "translation": "tekne",
+      "status": "ready"
+    },
+    "56": {
+      "id": 56,
+      "label": "sandwich",
+      "translation": "sandviç",
+      "status": "ready"
+    },
+    "57": {
+      "id": 57,
+      "label": "baseball glove",
+      "translation": "beyzbol eldiveni",
+      "status": "ready"
+    },
+    "58": {
+      "id": 58,
+      "label": "motorcycle",
+      "translation": "motosiklet",
+      "status": "ready"
+    },
+    "59": {
+      "id": 59,
+      "label": "parking meter",
+      "translation": "parkmetre",
+      "status": "ready"
+    },
+    "60": {
+      "id": 60,
+      "label": "backpack",
+      "translation": "sırt çantası",
+      "status": "ready"
+    },
+    "61": {
+      "id": 61,
+      "label": "sheep",
+      "translation": "koyun",
+      "status": "ready"
+    },
+    "62": {
+      "id": 62,
+      "label": "fork",
+      "translation": "çatal",
+      "status": "ready"
+    },
+    "63": {
+      "id": 63,
+      "label": "keyboard",
+      "translation": "keyboard",
+      "status": "ready"
+    },
+    "64": {
+      "id": 64,
+      "label": "mouse",
+      "translation": "mouse",
+      "status": "ready"
+    },
+    "65": {
+      "id": 65,
+      "label": "cake",
+      "translation": "cake",
+      "status": "ready"
+    },
+    "72": {
+      "id": 72,
+      "label": "hot dog",
+      "translation": "",
+      "status": "pending"
+    },
+    "71": {
+      "id": 71,
+      "label": "carrot",
+      "translation": "",
+      "status": "pending"
+    },
+    "66": {
+      "id": 66,
+      "label": "bottle",
+      "translation": "",
+      "status": "pending"
+    },
+    "73": {
+      "id": 73,
+      "label": "spoon",
+      "translation": "",
+      "status": "pending"
+    }
+  },
+  "language": "tr"
+}

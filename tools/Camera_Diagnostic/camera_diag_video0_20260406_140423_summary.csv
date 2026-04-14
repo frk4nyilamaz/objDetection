@@ -1,0 +1,22 @@
+field,value
+device,/dev/video0
+driver_name,uvcvideo
+card_type,USB 2.0 Camera: HD USB Camera
+bus_info,usb-0000:00:14.0-10
+driver_version,6.17.13
+capabilities,0x84a00001
+device_caps,0x04200001
+usb_vendor_id,05a3
+usb_product_id,9830
+usb_manufacturer,"Sonix Technology Co., Ltd."
+usb_product,USB 2.0 Camera
+usb_serial,SN0033
+usb_speed_mbps,480
+usb_version,2.01
+current_resolution,640x480
+current_pixel_format,'YUYV' (YUYV 4:2:2)
+current_fps,30.000
+advertised_max_resolution,3264x2448
+advertised_max_megapixels,7.990
+unique_pixel_formats,"MJPG, YUYV"
+notes,Advertised max megapixels = listed mode resolution area / 1e6; this is not always the physical sensor MP.

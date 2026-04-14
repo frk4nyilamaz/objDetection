@@ -1,0 +1,370 @@
+{
+  "next_id": 74,
+  "labels": {
+    "person": {
+      "id": 1,
+      "label": "person",
+      "normalized_label": "person"
+    },
+    "cell phone": {
+      "id": 2,
+      "label": "cell phone",
+      "normalized_label": "cell phone"
+    },
+    "tv": {
+      "id": 3,
+      "label": "tv",
+      "normalized_label": "tv"
+    },
+    "laptop": {
+      "id": 4,
+      "label": "laptop",
+      "normalized_label": "laptop"
+    },
+    "clock": {
+      "id": 5,
+      "label": "clock",
+      "normalized_label": "clock"
+    },
+    "chair": {
+      "id": 6,
+      "label": "chair",
+      "normalized_label": "chair"
+    },
+    "cup": {
+      "id": 7,
+      "label": "cup",
+      "normalized_label": "cup"
+    },
+    "remote": {
+      "id": 8,
+      "label": "remote",
+      "normalized_label": "remote"
+    },
+    "toothbrush": {
+      "id": 9,
+      "label": "toothbrush",
+      "normalized_label": "toothbrush"
+    },
+    "banana": {
+      "id": 10,
+      "label": "banana",
+      "normalized_label": "banana"
+    },
+    "wine glass": {
+      "id": 11,
+      "label": "wine glass",
+      "normalized_label": "wine glass"
+    },
+    "sports ball": {
+      "id": 12,
+      "label": "sports ball",
+      "normalized_label": "sports ball"
+    },
+    "dining table": {
+      "id": 13,
+      "label": "dining table",
+      "normalized_label": "dining table"
+    },
+    "bowl": {
+      "id": 14,
+      "label": "bowl",
+      "normalized_label": "bowl"
+    },
+    "train": {
+      "id": 15,
+      "label": "train",
+      "normalized_label": "train"
+    },
+    "bed": {
+      "id": 16,
+      "label": "bed",
+      "normalized_label": "bed"
+    },
+    "microwave": {
+      "id": 17,
+      "label": "microwave",
+      "normalized_label": "microwave"
+    },
+    "refrigerator": {
+      "id": 18,
+      "label": "refrigerator",
+      "normalized_label": "refrigerator"
+    },
+    "toilet": {
+      "id": 19,
+      "label": "toilet",
+      "normalized_label": "toilet"
+    },
+    "book": {
+      "id": 20,
+      "label": "book",
+      "normalized_label": "book"
+    },
+    "cat": {
+      "id": 21,
+      "label": "cat",
+      "normalized_label": "cat"
+    },
+    "umbrella": {
+      "id": 22,
+      "label": "umbrella",
+      "normalized_label": "umbrella"
+    },
+    "baseball bat": {
+      "id": 23,
+      "label": "baseball bat",
+      "normalized_label": "baseball bat"
+    },
+    "tie": {
+      "id": 24,
+      "label": "tie",
+      "normalized_label": "tie"
+    },
+    "oven": {
+      "id": 25,
+      "label": "oven",
+      "normalized_label": "oven"
+    },
+    "handbag": {
+      "id": 26,
+      "label": "handbag",
+      "normalized_label": "handbag"
+    },
+    "bus": {
+      "id": 27,
+      "label": "bus",
+      "normalized_label": "bus"
+    },
+    "airplane": {
+      "id": 28,
+      "label": "airplane",
+      "normalized_label": "airplane"
+    },
+    "couch": {
+      "id": 29,
+      "label": "couch",
+      "normalized_label": "couch"
+    },
+    "potted plant": {
+      "id": 30,
+      "label": "potted plant",
+      "normalized_label": "potted plant"
+    },
+    "suitcase": {
+      "id": 31,
+      "label": "suitcase",
+      "normalized_label": "suitcase"
+    },
+    "bird": {
+      "id": 32,
+      "label": "bird",
+      "normalized_label": "bird"
+    },
+    "car": {
+      "id": 33,
+      "label": "car",
+      "normalized_label": "car"
+    },
+    "apple": {
+      "id": 34,
+      "label": "apple",
+      "normalized_label": "apple"
+    },
+    "kite": {
+      "id": 35,
+      "label": "kite",
+      "normalized_label": "kite"
+    },
+    "sink": {
+      "id": 36,
+      "label": "sink",
+      "normalized_label": "sink"
+    },
+    "dog": {
+      "id": 37,
+      "label": "dog",
+      "normalized_label": "dog"
+    },
+    "teddy bear": {
+      "id": 38,
+      "label": "teddy bear",
+      "normalized_label": "teddy bear"
+    },
+    "horse": {
+      "id": 39,
+      "label": "horse",
+      "normalized_label": "horse"
+    },
+    "vase": {
+      "id": 40,
+      "label": "vase",
+      "normalized_label": "vase"
+    },
+    "truck": {
+      "id": 41,
+      "label": "truck",
+      "normalized_label": "truck"
+    },
+    "knife": {
+      "id": 42,
+      "label": "knife",
+      "normalized_label": "knife"
+    },
+    "cow": {
+      "id": 43,
+      "label": "cow",
+      "normalized_label": "cow"
+    },
+    "surfboard": {
+      "id": 44,
+      "label": "surfboard",
+      "normalized_label": "surfboard"
+    },
+    "bench": {
+      "id": 45,
+      "label": "bench",
+      "normalized_label": "bench"
+    },
+    "pizza": {
+      "id": 46,
+      "label": "pizza",
+      "normalized_label": "pizza"
+    },
+    "frisbee": {
+      "id": 47,
+      "label": "frisbee",
+      "normalized_label": "frisbee"
+    },
+    "donut": {
+      "id": 48,
+      "label": "donut",
+      "normalized_label": "donut"
+    },
+    "tennis racket": {
+      "id": 49,
+      "label": "tennis racket",
+      "normalized_label": "tennis racket"
+    },
+    "skateboard": {
+      "id": 50,
+      "label": "skateboard",
+      "normalized_label": "skateboard"
+    },
+    "traffic light": {
+      "id": 51,
+      "label": "traffic light",
+      "normalized_label": "traffic light"
+    },
+    "bicycle": {
+      "id": 52,
+      "label": "bicycle",
+      "normalized_label": "bicycle"
+    },
+    "scissors": {
+      "id": 53,
+      "label": "scissors",
+      "normalized_label": "scissors"
+    },
+    "skis": {
+      "id": 54,
+      "label": "skis",
+      "normalized_label": "skis"
+    },
+    "boat": {
+      "id": 55,
+      "label": "boat",
+      "normalized_label": "boat"
+    },
+    "sandwich": {
+      "id": 56,
+      "label": "sandwich",
+      "normalized_label": "sandwich"
+    },
+    "baseball glove": {
+      "id": 57,
+      "label": "baseball glove",
+      "normalized_label": "baseball glove"
+    },
+    "motorcycle": {
+      "id": 58,
+      "label": "motorcycle",
+      "normalized_label": "motorcycle"
+    },
+    "parking meter": {
+      "id": 59,
+      "label": "parking meter",
+      "normalized_label": "parking meter"
+    },
+    "backpack": {
+      "id": 60,
+      "label": "backpack",
+      "normalized_label": "backpack"
+    },
+    "sheep": {
+      "id": 61,
+      "label": "sheep",
+      "normalized_label": "sheep"
+    },
+    "fork": {
+      "id": 62,
+      "label": "fork",
+      "normalized_label": "fork"
+    },
+    "keyboard": {
+      "id": 63,
+      "label": "keyboard",
+      "normalized_label": "keyboard"
+    },
+    "mouse": {
+      "id": 64,
+      "label": "mouse",
+      "normalized_label": "mouse"
+    },
+    "cake": {
+      "id": 65,
+      "label": "cake",
+      "normalized_label": "cake"
+    },
+    "bottle": {
+      "id": 66,
+      "label": "bottle",
+      "normalized_label": "bottle"
+    },
+    "snowboard": {
+      "id": 67,
+      "label": "snowboard",
+      "normalized_label": "snowboard"
+    },
+    "bear": {
+      "id": 68,
+      "label": "bear",
+      "normalized_label": "bear"
+    },
+    "elephant": {
+      "id": 69,
+      "label": "elephant",
+      "normalized_label": "elephant"
+    },
+    "fire hydrant": {
+      "id": 70,
+      "label": "fire hydrant",
+      "normalized_label": "fire hydrant"
+    },
+    "carrot": {
+      "id": 71,
+      "label": "carrot",
+      "normalized_label": "carrot"
+    },
+    "hot dog": {
+      "id": 72,
+      "label": "hot dog",
+      "normalized_label": "hot dog"
+    },
+    "spoon": {
+      "id": 73,
+      "label": "spoon",
+      "normalized_label": "spoon"
+    }
+  }
+}
