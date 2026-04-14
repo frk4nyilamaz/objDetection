@@ -2,8 +2,8 @@ import json
 from pathlib import Path
 
 from app.config import PROJECT_ROOT
-from objectDetectionProject.tools.label_registry import LabelRegistry
-from objectDetectionProject.tools.label_locale_store import LabelLocaleStore
+from tools.label_registry import LabelRegistry
+from tools.label_locale_store import LabelLocaleStore
 
 
 def load_json(path: Path) -> dict:
