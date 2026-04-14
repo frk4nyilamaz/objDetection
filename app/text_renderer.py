@@ -25,6 +25,7 @@ class TextRenderer:
                 self.ft2.loadFontData(str(self.font_path), 0)
                 self.use_freetype = True
                 print(f"[TEXT] OpenCV FreeType aktif: {self.font_path}")
+                print(f"[TEXT] FONT_PATH = {self.font_path}")
                 return
             except Exception as e:
                 print(f"[TEXT] OpenCV FreeType kullanilamadi: {e}")

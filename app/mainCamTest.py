@@ -11,6 +11,7 @@ from app.config import (
     SNAPSHOT_DIR,
     PROJECT_ROOT,
     YOLOV8N_PATH,
+    FONT_PATH,
     YOLOV8S_PATH,
     get_mode_by_id,
     build_gst_pipeline,
@@ -21,7 +22,7 @@ from tools.label_registry import LabelRegistry
 from tools.label_locale_store import LabelLocaleStore
 
 
-renderer = TextRenderer()
+renderer = TextRenderer(str(FONT_PATH))
 
 
 def get_user_backend_choice() -> str:

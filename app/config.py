@@ -6,6 +6,7 @@ SNAPSHOT_DIR = PROJECT_ROOT / "outputs" / "snapshots"
 MODEL_DIR = PROJECT_ROOT / "models"
 YOLOV8N_PATH = MODEL_DIR / "yolov8n.pt"
 YOLOV8S_PATH = MODEL_DIR / "yolov8s.pt"
+FONT_PATH = PROJECT_ROOT / "assests" / "fonts" / "FiraSans-Black.ttf"
 
 CAMERA_MODES = [
     {"id": "info", "label" : "For best, choose 3. Because our camera's output shows that at 1024x768, both formats support 30 FPS. However, MJPG is much \"lighter\" on the USB bus "},
