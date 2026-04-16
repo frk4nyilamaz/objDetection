@@ -1,6 +1,6 @@
 import cv2
 
-from app.config import build_gst_pipeline
+from app.config import build_android_gst_pipeline, build_gst_pipeline
 
 
 class CameraError(Exception):
@@ -8,10 +8,11 @@ class CameraError(Exception):
 
 
 class Camera:
-    def __init__(self, source, backend, mode: dict):
+    def __init__(self, source, backend, mode: dict, apply_mode: bool = True):
         self.source = source
         self.backend = backend
         self.mode = mode
+        self.apply_mode = apply_mode
         self.cap = None
 
     def open(self) -> None:
@@ -20,7 +21,7 @@ class Camera:
         if not self.cap.isOpened():
             raise CameraError("Kamera acilamadi.")
 
-        if self.backend == cv2.CAP_V4L2:
+        if self.backend == cv2.CAP_V4L2 and self.apply_mode:
             self._apply_v4l2_mode()
 
     def _apply_v4l2_mode(self) -> None:
@@ -57,14 +58,33 @@ class Camera:
             self.cap = None
 
 
-def build_camera(backend_choice: str, device: str, mode: dict):
+def _normalize_v4l2_source(device):
+    if isinstance(device, int):
+        return device
+
+    if isinstance(device, str) and device.startswith("/dev/video"):
+        try:
+            return int(device.removeprefix("/dev/video"))
+        except ValueError as exc:
+            raise CameraError(f"V4L2 device index parse edilemedi: {device}") from exc
+
+    return device
+
+
+def build_camera(backend_choice: str, device: str, mode: dict, apply_mode: bool = True):
     choice = backend_choice.strip().lower()
 
     if choice == "gstreamer":
         pipeline = build_gst_pipeline(device, mode)
-        return Camera(pipeline, cv2.CAP_GSTREAMER, mode)
+        return Camera(pipeline, cv2.CAP_GSTREAMER, mode, apply_mode=False)
 
     if choice == "ffmpeg":
-        return Camera(device, cv2.CAP_V4L2, mode)
+        source = _normalize_v4l2_source(device)
+        return Camera(source, cv2.CAP_V4L2, mode, apply_mode=apply_mode)
 
     raise CameraError("Gecersiz backend secimi. 'gstreamer' veya 'ffmpeg' kullanin.")
+
+
+def build_android_camera(device: str, mode: dict):
+    pipeline = build_android_gst_pipeline(device)
+    return Camera(pipeline, cv2.CAP_GSTREAMER, mode, apply_mode=False)

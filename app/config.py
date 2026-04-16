@@ -2,11 +2,20 @@ from pathlib import Path
 
 PROJECT_ROOT = Path("/mnt/sda1/furkan/objectDetectionProject")
 SNAPSHOT_DIR = PROJECT_ROOT / "outputs" / "snapshots"
+RECORDINGS_DIR = PROJECT_ROOT / "outputs" / "recordings"
+SCRCPY_BINARY_PATH = Path.home() / "tools" / "scrcpy" / "scrcpy-linux-x86_64-v3.3.4" / "scrcpy"
 
 MODEL_DIR = PROJECT_ROOT / "models"
 YOLOV8N_PATH = MODEL_DIR / "yolov8n.pt"
 YOLOV8S_PATH = MODEL_DIR / "yolov8s.pt"
-FONT_PATH = PROJECT_ROOT / "assests" / "fonts" / "FiraSans-Black.ttf"
+FONT_PATH = PROJECT_ROOT / "assets" / "fonts" / "FiraSans-Black.ttf"
+DEFAULT_USB_CAMERA_DEVICE = "/dev/video0"
+DEFAULT_ANDROID_V4L2_DEVICE = "/dev/video2"
+
+CAMERA_SOURCE_TYPES = [
+    {"id": "1", "key": "usb", "label": "USB Camera"},
+    {"id": "2", "key": "android", "label": "Android Phone Camera"},
+]
 
 CAMERA_MODES = [
     {"id": "info", "label" : "For best, choose 3. Because our camera's output shows that at 1024x768, both formats support 30 FPS. However, MJPG is much \"lighter\" on the USB bus "},
@@ -18,12 +27,33 @@ CAMERA_MODES = [
     {"id": "6", "label": "1024x768 @10 YUYV", "width": 1024, "height": 768, "fps": 10, "pixel_format": "YUYV"},
 ]
 
+ANDROID_CAMERA_PROFILES = [
+    {"id": "1", "label": "Back 1920x1080 @30", "device": "/dev/video2", "camera_index": 2, "camera_id": 0, "width": 1920, "height": 1080, "fps": 30},
+    {"id": "2", "label": "Back 1280x720 @30", "device": "/dev/video2", "camera_index": 2, "camera_id": 0, "width": 1280, "height": 720, "fps": 30},
+    {"id": "3", "label": "Front 1920x1080 @30", "device": "/dev/video2", "camera_index": 2, "camera_id": 1, "width": 1920, "height": 1080, "fps": 30},
+    {"id": "4", "label": "Front 1280x720 @30", "device": "/dev/video2", "camera_index": 2, "camera_id": 1, "width": 1280, "height": 720, "fps": 30},
+]
+
+
+def get_camera_source_type_by_id(source_id: str) -> dict:
+    for source in CAMERA_SOURCE_TYPES:
+        if source["id"] == source_id:
+            return source
+    raise ValueError(f"Gecersiz kamera kaynagi id: {source_id}")
+
 
 def get_mode_by_id(mode_id: str) -> dict:
     for mode in CAMERA_MODES:
         if mode["id"] == mode_id:
             return mode
     raise ValueError(f"Gecersiz mode id: {mode_id}")
+
+
+def get_android_profile_by_id(profile_id: str) -> dict:
+    for profile in ANDROID_CAMERA_PROFILES:
+        if profile["id"] == profile_id:
+            return profile
+    raise ValueError(f"Gecersiz Android kamera profili id: {profile_id}")
 
 
 def build_gst_pipeline(device: str, mode: dict) -> str:
@@ -50,6 +80,31 @@ def build_gst_pipeline(device: str, mode: dict) -> str:
         )
 
     raise ValueError(f"Desteklenmeyen pixel format: {pixel_format}")
+
+
+def build_android_gst_pipeline(device: str) -> str:
+    return (
+        f"v4l2src device={device} ! "
+        "videoconvert ! "
+        "appsink drop=true sync=false"
+    )
+
+def build_android_scrcpy_command(mode: dict, sink_device: str) -> list[str]:
+    width = int(mode["width"])
+    height = int(mode["height"])
+    fps = int(mode["fps"])
+    camera_id = int(mode["camera_id"])
+
+    return [
+        str(SCRCPY_BINARY_PATH),
+        "--video-source=camera",
+        f"--camera-id={camera_id}",
+        f"--camera-size={width}x{height}",
+        f"--camera-fps={fps}",
+        f"--v4l2-sink={sink_device}",
+        "--no-playback",
+        "--no-audio",
+    ]
 
 #yapılacaklar: aynısnı birde ffmpeg ile yapacağız. Seçeneğe göre ffmpeg veya gstreamer.
 """

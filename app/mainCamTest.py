@@ -7,22 +7,44 @@ import torch
 from ultralytics import YOLO
 
 from app.config import (
+    CAMERA_SOURCE_TYPES,
     CAMERA_MODES,
+    ANDROID_CAMERA_PROFILES,
     SNAPSHOT_DIR,
+    RECORDINGS_DIR,
     PROJECT_ROOT,
     YOLOV8N_PATH,
     FONT_PATH,
     YOLOV8S_PATH,
+    DEFAULT_USB_CAMERA_DEVICE,
+    get_camera_source_type_by_id,
+    get_android_profile_by_id,
     get_mode_by_id,
+    build_android_gst_pipeline,
     build_gst_pipeline,
 )
-from app.camera import build_camera, CameraError
+
+from app.camera import build_android_camera, build_camera, CameraError
 from app.text_renderer import TextRenderer
 from tools.label_registry import LabelRegistry
 from tools.label_locale_store import LabelLocaleStore
 
 
 renderer = TextRenderer(str(FONT_PATH))
+
+
+def get_user_camera_source_choice() -> dict:
+    print("\nKamera kaynagi secimi yapin:")
+    for source in CAMERA_SOURCE_TYPES:
+        print(f"{source['id']} - {source['label']}")
+
+    user_input = input("Seciminiz (1/2): ").strip()
+
+    try:
+        return get_camera_source_type_by_id(user_input)
+    except ValueError:
+        print("Gecersiz secim yapildi. Varsayilan olarak USB Camera secildi.")
+        return get_camera_source_type_by_id("1")
 
 
 def get_user_backend_choice() -> str:
@@ -54,8 +76,8 @@ def get_user_model_choice() -> str:
     if user_input == "3":
         return "compare"
 
-    print("Gecersiz secim yapildi. Varsayilan olarak YOLOv8n secildi.")
-    return "n"
+    print("Gecersiz secim yapildi. Varsayilan olarak YOLOv8s secildi.")
+    return "s"
 
 
 def get_user_mode_choice() -> dict:
@@ -70,6 +92,20 @@ def get_user_mode_choice() -> dict:
     except ValueError:
         print("Gecersiz secim yapildi. Varsayilan olarak 640x480 @30 MJPG secildi.")
         return get_mode_by_id("1")
+
+
+def get_user_android_profile_choice() -> dict:
+    print("\nAndroid kamera profili secimi yapin:")
+    for profile in ANDROID_CAMERA_PROFILES:
+        print(f"{profile['id']} - {profile['label']}")
+
+    user_input = input("Seciminiz: ").strip()
+
+    try:
+        return get_android_profile_by_id(user_input)
+    except ValueError:
+        print("Gecersiz secim yapildi. Varsayilan olarak Back 1920x1080 @30 secildi.")
+        return get_android_profile_by_id("1")
 
 
 def draw_text_block(frame, lines, origin_x, origin_y, font_height=22):
@@ -109,8 +145,9 @@ def draw_text_block(frame, lines, origin_x, origin_y, font_height=22):
     return frame
 
 
-def draw_info_panel(frame, backend_choice, model_name, selected_mode, current_engine, language_mode, avg_fps):
+def draw_info_panel(frame, source_label, backend_choice, model_name, selected_mode, current_engine, language_mode, avg_fps):
     info_lines = [
+        f"Source    : {source_label}",
         f"Model     : {model_name}",
         f"Backend   : {backend_choice}",
         f"Mode      : {selected_mode['label']}",
@@ -131,6 +168,7 @@ def draw_menu_panel(frame, menu_visible):
             "l : language en/tr",
             "p : snapshot",
             "x : boxes on/off",
+            "r : record video",
             "q : quit",
         ]
         box_height = len(menu_lines) * (20 + 8) + 20
@@ -231,6 +269,39 @@ def save_snapshot(frame):
     else:
         print("[SNAPSHOT] Kaydetme basarisiz.")
 
+def draw_recording_badge(frame):
+    cv2.circle(frame, (25, 25), 8, (0, 0, 255), -1)
+    renderer.put_text(frame, "REC", (40, 32), 20, (0, 0, 255), 1)
+    return frame
+
+def create_video_writer(record_frame, selected_mode):
+    RECORDINGS_DIR.mkdir(parents=True, exist_ok=True)
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    output_path = RECORDINGS_DIR / f"record_{timestamp}.avi"
+
+    height, width = record_frame.shape[:2]
+
+    # Düşük CPU yükü için pratik seçim: MJPG + AVI
+    fourcc = cv2.VideoWriter_fourcc(*"MJPG")
+    output_fps = float(selected_mode["fps"]) if selected_mode.get("fps") else 20.0
+    output_fps = max(1.0, min(output_fps, 30.0))
+
+    writer = cv2.VideoWriter(str(output_path), fourcc, output_fps, (width, height))
+
+    if not writer.isOpened():
+        raise RuntimeError("VideoWriter acilamadi.")
+
+    print(f"[RECORD] Kayit basladi: {output_path}")
+    print(f"[RECORD] Boyut: {width}x{height}, FPS: {output_fps:.1f}")
+    return writer, output_path
+
+
+def stop_video_writer(video_writer, recording_path):
+    if video_writer is not None:
+        video_writer.release()
+        print(f"[RECORD] Kayit durduruldu: {recording_path}")
+
 
 def predict_and_render(model, frame, engine, boxes_visible, language_mode, registry, tr_store):
     results = model.predict(
@@ -250,12 +321,46 @@ def predict_and_render(model, frame, engine, boxes_visible, language_mode, regis
     return rendered
 
 
-def main():
-    backend_choice = get_user_backend_choice()
-    model_choice = get_user_model_choice()
-    selected_mode = get_user_mode_choice()
+def open_camera_with_retry(
+    camera,
+    attempts=15,
+    delay_seconds=0.5,
+    validate_frame=False,
+):
+    last_error = None
 
-    device_name = "/dev/video0"
+    for attempt in range(1, attempts + 1):
+        try:
+            camera.open()
+
+            if validate_frame:
+                for _ in range(5):
+                    try:
+                        camera.read()
+                        return
+                    except CameraError as exc:
+                        last_error = exc
+                        time.sleep(0.1)
+
+                camera.release()
+                continue
+
+            return
+        except CameraError as exc:
+            last_error = exc
+            camera.release()
+            if attempt < attempts:
+                time.sleep(delay_seconds)
+
+    if last_error is not None:
+        raise last_error
+
+
+def main():
+    camera_source = get_user_camera_source_choice()
+    backend_choice = ""
+    selected_mode = None
+    device_name = DEFAULT_USB_CAMERA_DEVICE
     base_window_name = "CAM-TEST"
 
     current_engine = "cuda" if torch.cuda.is_available() else "cpu"
@@ -263,15 +368,41 @@ def main():
     info_visible = True
     menu_visible = True
     boxes_visible = True
+    recording = False
+    video_writer = None
+    recording_path = None
+    camera = None
+    source_label = camera_source["key"].upper()
 
     registry = LabelRegistry(PROJECT_ROOT)
     tr_store = LabelLocaleStore(PROJECT_ROOT, "tr")
 
-    camera = build_camera(
-        backend_choice=backend_choice,
-        device=device_name,
-        mode=selected_mode,
-    )
+    if camera_source["key"] == "usb":
+        backend_choice = get_user_backend_choice()
+        selected_mode = get_user_mode_choice()
+        device_name = DEFAULT_USB_CAMERA_DEVICE
+        camera = build_camera(
+            backend_choice=backend_choice,
+            device=device_name,
+            mode=selected_mode,
+        )
+    else:
+        backend_choice = "gstreamer"
+        selected_profile = get_user_android_profile_choice()
+        device_name = selected_profile["device"]
+        selected_mode = {
+            "label": selected_profile["label"],
+            "width": selected_profile["width"],
+            "height": selected_profile["height"],
+            "fps": selected_profile["fps"],
+            "pixel_format": "YUYV",
+        }
+        camera = build_android_camera(
+            device=device_name,
+            mode=selected_mode,
+        )
+
+    model_choice = get_user_model_choice()
 
     model_n = None
     model_s = None
@@ -290,20 +421,30 @@ def main():
 
     try:
         print("\nSecilen ayarlar:")
+        print(f"Kaynak       : {camera_source['label']}")
         print(f"Backend      : {backend_choice}")
         print(f"Model modu   : {model_choice}")
-        print(f"Kamera mode  : {selected_mode['label']}")
+        if camera_source["key"] == "usb":
+            print(f"Kamera mode  : {selected_mode['label']}")
+        else:
+            print(f"Android mode : {selected_mode['label']}")
         print(f"Device       : {device_name}")
         print(f"Engine       : {current_engine}")
         print(f"Language     : {language_mode}")
 
-        if backend_choice == "gstreamer":
+        if camera_source["key"] == "usb" and backend_choice == "gstreamer":
             gst_pipeline = build_gst_pipeline(device_name, selected_mode)
             print(f"Pipeline     : {gst_pipeline}")
-        else:
+        elif camera_source["key"] == "usb":
             print("Pipeline     : Direkt device + CAP_V4L2")
+        else:
+            android_gst_pipeline = build_android_gst_pipeline(device_name)
+            print(f"Pipeline     : {android_gst_pipeline}")
 
-        camera.open()
+        if camera_source["key"] == "android":
+            open_camera_with_retry(camera, attempts=40, delay_seconds=0.5, validate_frame=True)
+        else:
+            camera.open()
 
         fps_history = deque(maxlen=30)
 
@@ -326,6 +467,7 @@ def main():
                 if info_visible:
                     draw_info_panel(
                         annotated_n,
+                        source_label,
                         backend_choice,
                         "YOLOv8n",
                         selected_mode,
@@ -352,6 +494,7 @@ def main():
                 if info_visible:
                     draw_info_panel(
                         annotated_s,
+                        source_label,
                         backend_choice,
                         "YOLOv8s",
                         selected_mode,
@@ -381,6 +524,7 @@ def main():
                 if info_visible:
                     draw_info_panel(
                         annotated_n,
+                        source_label,
                         backend_choice,
                         "YOLOv8n",
                         selected_mode,
@@ -390,6 +534,7 @@ def main():
                     )
                     draw_info_panel(
                         annotated_s,
+                        source_label,
                         backend_choice,
                         "YOLOv8s",
                         selected_mode,
@@ -405,6 +550,20 @@ def main():
                 cv2.imshow(f"{base_window_name} - YOLOv8s", annotated_s)
 
                 snapshot_frame = cv2.hconcat([annotated_n, annotated_s])
+
+            if snapshot_frame is not None:
+                record_frame = snapshot_frame.copy()
+
+                if recording:
+                    draw_recording_badge(record_frame)
+
+                    if video_writer is None:
+                        video_writer, recording_path = create_video_writer(
+                            record_frame,
+                            selected_mode,
+                        )
+
+                    video_writer.write(record_frame)
 
             key = cv2.waitKey(1) & 0xFF
 
@@ -427,6 +586,17 @@ def main():
             elif key == ord("p"):
                 if snapshot_frame is not None:
                     save_snapshot(snapshot_frame)
+            elif key == ord("r"):
+                if not recording:
+                    recording = True
+                    video_writer = None
+                    recording_path = None
+                    print("[RECORD] Kayit istegi alindi. Sonraki frame ile baslatilacak.")
+                else:
+                    recording = False
+                    stop_video_writer(video_writer, recording_path)
+                    video_writer = None
+                    recording_path = None
             elif key == ord("x"):
                 boxes_visible = not boxes_visible
                 print(f"[BOXES] {'ACIK' if boxes_visible else 'KAPALI'}")
@@ -436,7 +606,9 @@ def main():
     except Exception as e:
         print(f"[GENEL HATA] {e}")
     finally:
-        camera.release()
+        stop_video_writer(video_writer, recording_path)
+        if camera is not None:
+            camera.release()
         cv2.destroyAllWindows()
         print("Kamera kapatildi.")
 
