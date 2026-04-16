@@ -3,4 +3,4 @@
 *.pt
 outputs/
 githu.txt
-*.codex
+.codex
